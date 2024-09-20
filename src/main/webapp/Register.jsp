@@ -75,6 +75,7 @@
         /* Center the form in the middle of the screen */
 
         .navbar {
+            color: black;
             background: linear-gradient(45deg, #007bff, #00d4ff); /* Gradient background */
         }
 
@@ -88,21 +89,22 @@
         .navbar-brand {
             font-size: 1.75rem;
             font-weight: bold;
-            color: #fff;
+            color: black;
         }
 
         .navbar-nav{
             position: relative;
             left: 800px;
+            color: black;
         }
 
         .navbar-nav .nav-link {
-            color: #fff;
+            color: black;
             margin-left: 20px; /* Adds space between the links */
         }
 
         .navbar-nav .nav-link:hover {
-            color: #ffce00;
+            color: white;
         }
 
         .navbar-toggler {
