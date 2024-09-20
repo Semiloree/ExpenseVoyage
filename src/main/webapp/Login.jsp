@@ -42,6 +42,64 @@
     </script>
 
     <style>
+
+
+        .navbar {
+            background: linear-gradient(45deg, #007bff, #00d4ff); /* Gradient background */
+        }
+
+        .container-fluid{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+        }
+
+        .navbar-brand {
+            font-size: 1.75rem;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .navbar-nav{
+            position: relative;
+            left: 800px;
+        }
+
+        .navbar-nav .nav-link {
+            color: #fff;
+            margin-left: 20px; /* Adds space between the links */
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #ffce00;
+        }
+
+        .navbar-toggler {
+            border: none;
+            background: transparent;
+        }
+
+        /* Adjusting notification icon size */
+        .nav-link.notifications i {
+            font-size: 1.2rem;
+        }
+
+        /* Optional: To center the nav vertically */
+        .navbar {
+            padding: 0.8rem 2rem; /* Adjust padding for better vertical centering */
+        }
+
+        /* For smaller screens, make the navbar collapse */
+        @media (max-width: 992px) {
+            .navbar-nav {
+                text-align: center;
+            }
+
+            .navbar-nav .nav-link {
+                margin-left: 0; /* Remove spacing for smaller screens */
+            }
+        }
         /* Center the form in the middle of the screen */
         .login-container {
             display: flex;
@@ -142,6 +200,37 @@
     </style>
 </head>
 <body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container-fluid">
+        <!-- Brand/Logo on the left -->
+        <a class="navbar-brand" href="#">ExpenseVoyage</a>
+
+        <!-- Toggle button for mobile view -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar links aligned to the right -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto"> <!-- 'ms-auto' pushes items to the right -->
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Trips</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Expenses</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link notifications" href="#"><i class="fas fa-bell"></i></a> <!-- Notification icon -->
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
 <div class="login-container">
     <div class="form-container">
