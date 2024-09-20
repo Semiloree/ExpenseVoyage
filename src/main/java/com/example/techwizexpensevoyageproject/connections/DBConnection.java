@@ -16,7 +16,7 @@ public class DBConnection {
             // Load MySQL Driver
             Class.forName("com.mysql.cj.jdbc.Driver");
             // Establish connection
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/ExpenseVoyage?autoReconnect=true&useSSL=false", "root", "Davsem26");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/ExpenseVoyageDB?autoReconnect=true&useSSL=false", "root", "Uche2006");
             System.out.println("Database connection established successfully.");
         } catch (ClassNotFoundException e) {
             System.err.println("JDBC Driver not found.");

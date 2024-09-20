@@ -1,5 +1,6 @@
 package com.example.techwizexpensevoyageproject.model;
 
+import com.mysql.cj.x.protobuf.MysqlxDatatypes;
 import jakarta.persistence.*;
 
 import java.util.Date;
