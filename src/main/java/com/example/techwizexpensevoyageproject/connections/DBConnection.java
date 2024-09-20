@@ -15,8 +15,14 @@ public class DBConnection {
         try {
             // Load MySQL Driver
             Class.forName("com.mysql.cj.jdbc.Driver");
+
+            // Updated connection URL with 'allowPublicKeyRetrieval=true' to fix public key retrieval error
+            String url = "jdbc:mysql://localhost:3306/ExpenseVoyageDB?autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true";
+            String username = "root";
+            String password = "Uche2006";
+
             // Establish connection
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/ExpenseVoyage?autoReconnect=true&useSSL=false", "root", "Davsem26");
+            connection = DriverManager.getConnection(url, username, password);
             System.out.println("Database connection established successfully.");
         } catch (ClassNotFoundException e) {
             System.err.println("JDBC Driver not found.");
