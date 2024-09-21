@@ -22,54 +22,40 @@ public class LoginServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
-        // Authenticate user
-        User authenticatedUser = authenticateUser(email, password);
-
-        if (authenticatedUser != null) {
-            // Password is correct, proceed with login
-            HttpSession session = request.getSession();
-            session.setAttribute("user", authenticatedUser); // Store the User object in session
-
-            request.setAttribute("message", "Login successful!");
-            response.sendRedirect("DashBoard.jsp"); // Redirect to the dashboard
-        } else {
-            // Invalid email or password
-            request.setAttribute("error", "Invalid email or password.");
-            request.getRequestDispatcher("Login.jsp").forward(request, response);
-        }
-    }
-
-    // Method to authenticate the user by email and password
-    private User authenticateUser(String email, String password) {
-        User user = null;
-
         try (Connection connection = DBConnection.getConnection()) {
-            String sql = "SELECT * FROM Users WHERE email = ?";
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, email);
+            String sql = "SELECT firstName, lastName, passwordHash FROM Users WHERE email = ?";
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setString(1, email);
+                ResultSet rs = statement.executeQuery();
 
-            ResultSet resultSet = statement.executeQuery();
+                if (rs.next()) {
+                    String hashedPassword = rs.getString("passwordHash");
+                    // Verify the password
+                    if (BCrypt.checkpw(password, hashedPassword)) {
+                        // Password matches, retrieve user details
+                        String firstName = rs.getString("firstName");
+                        String lastName = rs.getString("lastName");
 
-            if (resultSet.next()) {
-                String storedHashedPassword = resultSet.getString("passwordHash"); // Get the hashed password from DB
+                        // Store user details in session
+                        HttpSession session = request.getSession();
+                        session.setAttribute("firstName", firstName);
+                        session.setAttribute("lastName", lastName);
 
-                // Compare the stored hashed password with the entered password using BCrypt
-                if (BCrypt.checkpw(password, storedHashedPassword)) {
-                    // If password is correct, create a new User object with details from the DB
-                    user = new User();
-                    user.setFirstName(resultSet.getString("firstName"));
-                    user.setLastName(resultSet.getString("lastName"));
-                    user.setEmail(resultSet.getString("email"));
-                    // Add other necessary fields from the result set
+                        // Redirect to the dashboard
+                        response.sendRedirect("DashBoard.jsp");
+                    } else {
+                        request.setAttribute("error", "Invalid password.");
+                        request.getRequestDispatcher("Login.jsp").forward(request, response);
+                    }
+                } else {
+                    request.setAttribute("error", "No user found with this email.");
+                    request.getRequestDispatcher("Login.jsp").forward(request, response);
                 }
             }
-
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
+            request.setAttribute("error", "Database error occurred. Please try again later.");
+            request.getRequestDispatcher("Login.jsp").forward(request, response);
         }
-
-        return user; // Return the authenticated user object or null if authentication fails
     }
 }

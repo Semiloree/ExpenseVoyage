@@ -1,3 +1,4 @@
+
 <%--
   Created by IntelliJ IDEA.
   User: Jesusemilore
@@ -58,21 +59,22 @@
         .navbar-brand {
             font-size: 1.75rem;
             font-weight: bold;
-            color: #fff;
+            color: black;
         }
 
         .navbar-nav{
             position: relative;
             left: 800px;
+            color: black;
         }
 
         .navbar-nav .nav-link {
-            color: #fff;
+            color: black;
             margin-left: 20px; /* Adds space between the links */
         }
 
         .navbar-nav .nav-link:hover {
-            color: #ffce00;
+            color: white;
         }
 
         .navbar-toggler {
@@ -216,7 +218,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto"> <!-- 'ms-auto' pushes items to the right -->
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Home</a>
+                    <a class="nav-link" href="DashBoard.jsp">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Trips</a>
@@ -234,42 +236,42 @@
 
 <div class="login-container">
     <div class="form-container">
-    <form action="login" method="post" onsubmit="return validateLoginForm()">
-        <h2>Login</h2>
+        <form action="login" method="post" onsubmit="return validateLoginForm()">
+            <h2>Login</h2>
 
-        <!-- Email Field -->
-        <div class="input-group">
-            <i class="fas fa-envelope"></i>
-            <input type="email" id="email" name="email" placeholder="Your Email" required>
-            <p class="error-message" id="email-error" style="display: none; color: red">Valid email is required.</p>
-        </div>
+            <!-- Email Field -->
+            <div class="input-group">
+                <i class="fas fa-envelope"></i>
+                <input type="email" id="email" name="email" placeholder="Your Email" required>
+                <p class="error-message" id="email-error" style="display: none; color: red">Valid email is required.</p>
+            </div>
 
-        <!-- Password Field -->
-        <div class="input-group">
-            <i class="fas fa-lock"></i>
-            <input type="password" id="password" name="password" placeholder="Password" required>
-            <p class="error-message" id="password-error" style="display: none; color: red">Password is required.</p>
-        </div>
+            <!-- Password Field -->
+            <div class="input-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="password" name="password" placeholder="Password" required>
+                <p class="error-message" id="password-error" style="display: none; color: red">Password is required.</p>
+            </div>
 
-        <!-- Forgot Password Link -->
-        <div class="forgot-password">
-            <a href="forgotPassword.jsp">Forgot password?</a>
-        </div>
+            <!-- Forgot Password Link -->
+            <div class="forgot-password">
+                <a href="forgotPassword.jsp">Forgot password?</a>
+            </div>
 
-        <div class="form-footer">
-            Dont have an account? <a href="Register.jsp">Register here</a>
-        </div>
+            <div class="form-footer">
+                Dont have an account? <a href="Register.jsp">Register here</a>
+            </div>
 
-        <!-- Display error message from server-side validation if any -->
-        <div class="error-message">
-            <c:if test="${not empty error}">
-                <p style="color: red;">${error}</p>
-            </c:if>
-        </div>
+            <!-- Display error message from server-side validation if any -->
+            <div class="error-message">
+                <c:if test="${not empty error}">
+                    <p style="color: red;">${error}</p>
+                </c:if>
+            </div>
 
-        <!-- Login Button -->
-        <button type="submit" class="login-btn">LOGIN</button>
-    </form>
+            <!-- Login Button -->
+            <button type="submit" class="login-btn">LOGIN</button>
+        </form>
     </div>
     <div class="image-container">
         <img src="images/RegisterImage.png" alt="Sign up illustration">
