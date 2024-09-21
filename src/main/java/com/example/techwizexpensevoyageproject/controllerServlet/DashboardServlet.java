@@ -27,9 +27,9 @@ public class DashboardServlet extends HttpServlet {
         if (user != null) {
             List<Trip> upcomingTrips = getUpcomingTrips(user.getUserId());
             request.setAttribute("upcomingTrips", upcomingTrips);
-            request.getRequestDispatcher("dashboard.jsp").forward(request, response);
+            request.getRequestDispatcher("DashBoard.jsp").forward(request, response);
         } else {
-            response.sendRedirect("login.jsp");
+            response.sendRedirect("Login.jsp");
         }
     }
 
